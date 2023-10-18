@@ -1,0 +1,13 @@
+steps:
+  - id: Update Permissions
+    name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'chmod'
+    args: ['-v','-R', 'a+rw','.']
+  - id: Build Jekyll Site
+    name: 'jekyll/jekyll'
+    args: ['jekyll','build']
+    env: ['JEKYLL_ENV=production']
+  - id: Deploy to Cloud Storage
+    name: 'gcr.io/cloud-builders/gsutil'
+    args: ['rsync', '-d', '-r', './_site', 'gs://blog.nickmalik.dev']
+timeout: '10m'
