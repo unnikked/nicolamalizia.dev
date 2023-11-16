@@ -4,10 +4,10 @@ steps:
     entrypoint: 'chmod'
     args: ['-v','-R', 'a+rw','.']
   - id: Build Jekyll Site
-    name: 'jekyll/jekyll'
+    name: 'jekyll/jekyll:4'
     args: ['jekyll','build']
     env: ['JEKYLL_ENV=production']
   - id: Deploy to Cloud Storage
     name: 'gcr.io/cloud-builders/gsutil'
-    args: ['rsync', '-d', '-r', './_site', 'gs://www.nickmalik.dev']
+    args: ['rsync', '-d', '-r', './_site', 'gs://nickmalik.dev']
 timeout: '10m'
