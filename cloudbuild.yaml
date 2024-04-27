@@ -9,5 +9,5 @@ steps:
     env: ['JEKYLL_ENV=production']
   - id: Deploy to Cloud Storage
     name: 'gcr.io/cloud-builders/gsutil'
-    args: ['rsync', '-d', '-r', './_site', 'gs://nickmalik.dev']
+    args: ['rsync', '-d', '-r', './_site', 'gs://nicolamalizia.dev']
 timeout: '10m'
